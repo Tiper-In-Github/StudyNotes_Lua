@@ -47,6 +47,7 @@ print(type(true))
 print(type(false))
 -- peint(type(i,,,等会true))。。。。没有整数？？
 print(type(20))     -- number
--- 好吧，一时间不太适应双精度这个东西
+-- 好吧，一时间不太适应双精度这个东西。
+--  先提交一下
 
 -- 截至这里，lua目前的语法还是很接近python等高级语言的，弱数据类型
