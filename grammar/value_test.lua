@@ -49,5 +49,7 @@ print(type(false))
 print(type(20))     -- number
 -- 好吧，一时间不太适应双精度这个东西。
 --  先提交一下
+-- 看到下面的代码是瞬间明白了什么
+print(type(print))       -- function....所以说，lua也是一种脚本语言，和Python类似，主要基于c语言封装而来
 
 -- 截至这里，lua目前的语法还是很接近python等高级语言的，弱数据类型
