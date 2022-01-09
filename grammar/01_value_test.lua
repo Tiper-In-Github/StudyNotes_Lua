@@ -41,7 +41,7 @@ print(test_b)       -- 1024
 
 -- 都试一遍吧
 -- 额。。。怎么指定数据类型，，好像不用声明，
--- 最后可以通过type来测试数据类型，这个内置方法和python如出一辙
+-- 最后可以通过type来获取数据类型，这个内置方法和python如出一辙
 print(type(nil))
 print(type(true))
 print(type(false))
@@ -51,5 +51,57 @@ print(type(20))     -- number
 --  先提交一下
 -- 看到下面的代码是瞬间明白了什么
 print(type(print))       -- function....所以说，lua也是一种脚本语言，和Python类似，主要基于c语言封装而来
-
+print(type(3.14))        -- number
+print(type(3))           -- number
+-- 双精度的，没有单独的整数类型
+print(type('你好!!'))
 -- 截至这里，lua目前的语法还是很接近python等高级语言的，弱数据类型
+-- [*]很独特的特性
+print("10" + "22" + "-2e1")   -- Lua中，会尝试将数字字符串转换为数字，支持科学计数法
+-- 这很特别，因为在大多数语言中，对于这种清情况都采取转换为AIISC编码，或者直接进行报错
+
+-- 字符串连接使用..而非+,这点并不是很方便
+-- print("Hello " + "Word")  这样写会报错
+print("Hello " .. "Word")
+
+-- 字符串长度
+-- 在Lua中，计算字符串长度非常简单
+text_string = "Hello Wubie"
+print(#text_string)
+print(#"Hello Wubie")
+
+-- 表（table)  实际上是一个”关联数组“
+local test_tb1 = {}   -- 直接声明一个空表
+local test_tb2 = {"c", "python", "java", "C++", "Lua"}
+print(test_tb1)     -- 这点挺出乎意料的，他会输出内存地址而不是里面的数据，这让调试变得繁琐，可以通过90行的方式实现输出全部内容
+print(test_tb2)
+print(test_tb2[2])  -- python
+print(test_tb2[5])  -- lua
+-- Lua的索引小标是从1开始，而非0开始，这点不是很理解
+test_tb2[4] = "C#"  -- 替换
+print(test_tb2[4])
+
+-- local test_tb3 = {"name" : "wubie"}  好吧，这样是不对的
+local test_tb3 = {}
+test_tb3['key'] = "value"
+print(test_tb3)
+print(test_tb3['key'])
+
+for key, value in pairs(test_tb3) do  -- 格式化输出表内所有key和value（以字符串为key），也可以说是遍历数组
+    print(key .. ":" .. value)
+end  -- p[*]需要注意的是，lua使用 do .... end代替了c语言的{}
+
+test_tb3['test_a'] = "test_b"
+for key, value in pairs(test_tb3) do  -- 格式化输出表内所有key和value（以字符串为key或者不设置key都可以）
+    print(key .. ":" .. value)
+end
+
+-- 如果是普通数组，也是可以的
+for key, value in pairs(test_tb2) do
+    print(key .. " is " .. value)
+    -- 或者我们这样
+    print(value)
+end
+-- 其表类型长度自动设置与其他高级语言一致，这点不写了
+
+-- 在上面的90 - 104行代码中，我们发现有重复了的代码，我们可以通过下一个学习点-函数来进行封装
